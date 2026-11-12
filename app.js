@@ -97,6 +97,28 @@
     }).join('');
   }
 
+  /* ---------- network: KOL cards ---------- */
+  var kolsEl = $('#kols');
+
+  function initials(name) {
+    var w = name.trim().split(/\s+/);
+    return (w.length > 1 ? w[0].charAt(0) + w[1].charAt(0) : name.slice(0, 2)).toUpperCase();
+  }
+
+  if (kolsEl && DATA.kols) {
+    kolsEl.innerHTML = DATA.kols.map(function (k) {
+      /* no photo yet → initials placeholder; set "photo" in site-data.js to replace it */
+      var photo = k.photo
+        ? '<img src="' + esc(k.photo) + '" width="208" height="208" alt="' + esc(k.name) + '" loading="lazy" decoding="async">'
+        : '<span class="kol-initials" aria-hidden="true">' + esc(initials(k.name)) + '</span>';
+      return '<article class="kol">' +
+        '<div class="kol-photo">' + photo + '</div>' +
+        '<h3>' + esc(k.name) + '</h3>' +
+        '<p class="kol-tags">' + k.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</p>' +
+        '</article>';
+    }).join('');
+  }
+
   /* ---------- dialog (case study + design gallery) ---------- */
   var dlg = $('#modal');
   var lastTrigger = null;
@@ -193,7 +215,11 @@
   menuBtn.addEventListener('click', function () { setMenu(!header.classList.contains('menu-open')); });
   $('#nav').addEventListener('click', function (e) {
     var a = e.target.closest('a');
-    if (a && !a.hasAttribute('data-soon')) setMenu(false);
+    if (a && !a.hasAttribute('data-soon')) {
+      setMenu(false);
+      /* drop focus so the Services dropdown (which stays open on focus) closes after choosing an item */
+      if (a.closest('.submenu')) a.blur();
+    }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && header.classList.contains('menu-open')) { setMenu(false); menuBtn.focus(); }
@@ -205,6 +231,9 @@
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+        /* Design now lives under Services, so Services stays highlighted while viewing either section */
+        var parent = $('.has-sub > a');
+        if (parent) parent.classList.toggle('active', en.target.id === 'services' || en.target.id === 'design');
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     $$('main section[id]').forEach(function (s) { io.observe(s); });

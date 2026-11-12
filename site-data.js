@@ -389,5 +389,20 @@ window.SITE = {
    "alt": "Final layered artwork for the Kiến Trung gift box"
   }
  },
- "credentialsUrl": "https://www.canva.com/design/DAHPUl6qKVs/J_7yNi0LjyDYQqIC6skdeQ/edit"
+ "credentialsUrl": "https://www.canva.com/design/DAHPUl6qKVs/J_7yNi0LjyDYQqIC6skdeQ/edit",
+
+ /* KOL network (Network section). Order here = order on the page.
+    photo: set to an image path to replace the initials placeholder, e.g. "assets/kols/gonpink.webp" */
+ "kols": [
+  { "name": "GONPINK",        "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "ANGELA PT",      "tags": ["Celeb", "Lifestyle"],      "photo": null },
+  { "name": "KHUYẾN DƯƠNG",   "tags": ["Reviewer", "Livestream"],  "photo": null },
+  { "name": "TINA THẢO THI",  "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "NGỌC TRINH",     "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "ỐC THANH VÂN",   "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "CĐ HƯƠNG LY",    "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "NGỌC MATCHA",    "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "LUCIE NGUYEN",   "tags": ["Beauty", "Lifestyle"],     "photo": null },
+  { "name": "MÈO TRÁI ĐẤT",   "tags": ["Beauty", "Lifestyle"],     "photo": null }
+ ]
 };
