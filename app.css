@@ -310,10 +310,11 @@ textarea{min-height:96px;resize:vertical}
   .hero h1{font-size:clamp(44px,13vw,64px)}
   .hero-sub{font-size:18px}
   .cta-row{margin-bottom:32px}
-  .proof{flex-direction:column;gap:18px;width:100%}
-  .proof>div{flex-direction:row;justify-content:flex-start;align-items:baseline;gap:14px;border:0;margin:0;padding:0}
-  .proof dt{margin:0;max-width:none}
-  .proof dd{font-size:30px;min-width:96px}
+  /* three across: number above its own label, so everything lines up */
+  .proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;padding-top:20px}
+  .proof>div{padding-right:10px;margin-right:10px}
+  .proof dd{font-size:clamp(22px,7vw,30px)}
+  .proof dt{font-size:12.5px;line-height:1.35;margin-top:8px;max-width:none}
   .brands .wrap{height:auto;flex-wrap:wrap;gap:6px;padding-top:16px;padding-bottom:16px}
   .marquee{flex-basis:100%}
   .brands li{font-size:17px}
