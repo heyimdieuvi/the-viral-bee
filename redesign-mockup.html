@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Viral Bee — Redesign Mockup (desktop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Manrope:wght@400;500;600;700;800&display=swap" />
+<style>
+:root{
+  --ink:#0f0e0d;--ink-2:#191715;--ink-3:#26231f;--ivory:#f5f0e6;--paper:#fbf8f1;
+  --honey:#e8b84a;--honey-deep:#d9a12c;--ember:#f2661c;--flame:#ff8a1f;
+  --muted-dark:#c4bcae;          /* lifted from #b8b0a2 for contrast */
+  --muted-light:#3f3a33;         /* darkened from #5b554b for contrast */
+  --line-dark:rgba(245,240,230,.16);--line-light:rgba(15,14,13,.16);
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --wrap:1360px;--gutter:clamp(24px,4vw,56px);
+  --section-y:96px;              /* one fixed rhythm instead of up to 176px */
+  --header-h:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
+body{font-family:var(--f-body);font-size:17px;line-height:1.6;background:var(--ink);color:var(--ivory);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.light .eyebrow{color:var(--muted-light)} .dark .eyebrow{color:var(--honey)}
+
+/* ---------- header ---------- */
+.site-header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:50;background:rgba(15,14,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{height:40px;width:auto}
+.nav{display:flex;gap:36px;align-items:center}
+.nav a{font-size:15px;font-weight:600;color:var(--muted-dark);padding:8px 0;border-bottom:2px solid transparent;transition:.2s}
+.nav a:hover,.nav a.active{color:var(--ivory);border-color:var(--honey)}
+/* services dropdown */
+.has-sub{position:relative}
+.has-sub>a{display:inline-flex;align-items:center;gap:7px}
+.caret{width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.submenu{list-style:none;position:absolute;top:100%;left:-18px;min-width:190px;padding:8px;margin-top:12px;background:#2b2722;border:1px solid rgba(232,184,74,.35);border-top:2px solid var(--honey);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s}
+.submenu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px} /* hover bridge so the menu doesn't close in the gap */
+.submenu a{display:block;font-size:15px;font-weight:600;color:var(--ivory);padding:10px 14px;border:0;border-radius:8px}
+.submenu a:hover,.submenu a:focus-visible{background:rgba(232,184,74,.16);color:var(--honey)}
+.has-sub:hover .submenu,.has-sub:focus-within .submenu{opacity:1;visibility:visible;transform:none}
+.has-sub:hover .caret,.has-sub:focus-within .caret{transform:rotate(225deg) translateY(-2px)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;border:1.5px solid transparent;transition:.2s;cursor:pointer;font-family:var(--f-body)}
+.btn-primary{background:var(--honey);color:var(--ink)} .btn-primary:hover{background:var(--honey-deep);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line-dark);color:var(--ivory)} .btn-ghost:hover{border-color:var(--ivory)}
+.btn-sm{padding:10px 20px;font-size:14px}
+:focus-visible{outline:3px solid var(--honey);outline-offset:3px;border-radius:6px}
+
+/* ---------- hero : exactly one viewport ---------- */
+.hero{height:100svh;min-height:680px;padding-top:var(--header-h);display:flex;flex-direction:column;background:
+  radial-gradient(900px 600px at 82% 55%,rgba(226,83,15,.28),transparent 70%),var(--ink);overflow:hidden}
+.hero-main{flex:1;min-height:0;display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:center}
+.hero-copy{padding:8px 0}
+.hero .eyebrow{display:inline-flex;gap:10px;align-items:center;margin-bottom:22px}
+.hero .eyebrow::before{content:"";width:28px;height:2px;background:var(--honey)}
+.hero h1{font-size:clamp(52px,6vw,92px);margin-bottom:24px}
+.hero h1 span{display:block;background:linear-gradient(100deg,#ffd34e,#f8961e 55%,#e2530f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:20px;color:var(--muted-dark);max-width:46ch;margin-bottom:32px}
+.hero-sub strong{color:var(--ivory);font-weight:700}
+.cta-row{display:flex;gap:14px;margin-bottom:40px}
+.proof{display:grid;grid-template-columns:repeat(3,auto);gap:0;width:max-content;border-top:1px solid var(--line-dark);padding-top:22px}
+.proof div{padding-right:36px;margin-right:36px;border-right:1px solid var(--line-dark)}
+.proof div:last-child{border:0;margin:0;padding:0}
+.proof b{display:block;font-family:var(--f-display);font-size:36px;font-weight:800;line-height:1;color:var(--ivory);letter-spacing:-.02em}
+.proof div span{display:block;font-size:14px;color:var(--muted-dark);margin-top:8px;max-width:19ch;line-height:1.35}
+.hero-visual{position:relative;height:100%;max-height:min(560px,66vh);display:flex;justify-content:center;align-items:flex-end}
+.arch{height:100%;aspect-ratio:1/1.05;border-radius:999px 999px 14px 14px;overflow:hidden;box-shadow:0 30px 80px rgba(226,83,15,.35)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.float{position:absolute;background:var(--ink);border:3px solid var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.5);width:210px;border-radius:6px;overflow:hidden}
+.float img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.float small{display:block;padding:8px 10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--ivory);color:var(--ink)}
+.float.a{left:-4%;top:36%} .float.b{right:-2%;bottom:6%}
+.brands{border-top:1px solid var(--line-dark);background:var(--ink-2)}
+.brands .wrap{display:flex;align-items:center;gap:40px;height:76px}
+.brands p{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted-dark);white-space:nowrap}
+.brands ul{list-style:none;display:flex;flex:1;justify-content:space-between;align-items:center}
+.brands li{font-family:var(--f-display);font-weight:700;font-size:21px;color:var(--ivory);opacity:.85;white-space:nowrap}
+
+/* ---------- sections ---------- */
+section.sec{padding:var(--section-y) 0}
+.light{background:var(--ivory);color:var(--ink)} .dark{background:var(--ink)} .honey{background:var(--honey);color:var(--ink)}
+.sec-head{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(36px,4.2vw,60px);margin-top:14px}
+.sec-head h2 em{font-style:normal;font-weight:400}
+.dark h2 em{color:var(--honey)}
+.sec-head p{font-size:18px;max-width:48ch}
+.light .sec-head p{color:var(--muted-light)} .dark .sec-head p{color:var(--muted-dark)}
+
+/* services: 4 columns, not 4 tall rows */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink)}
+.svc article{padding:26px 28px 8px 0;margin-right:28px;border-right:1px solid var(--line-light)}
+.svc article:last-child{border:0;margin:0}
+.svc .no{font-size:13px;font-weight:800;color:var(--ember);letter-spacing:.1em}
+.svc h3{font-size:28px;margin:14px 0 16px;line-height:1.08}
+.svc ul{list-style:none;color:var(--muted-light);font-size:16px}
+.svc li{padding:9px 0;border-top:1px solid var(--line-light)}
+.svc li:first-child{border-top:0;padding-top:0}
+
+/* work */
+.sec-head.wide{grid-template-columns:auto 1fr}
+.filters{display:flex;gap:8px;flex-wrap:nowrap;justify-content:flex-end;padding-bottom:6px}
+.chip{white-space:nowrap;font:600 14px var(--f-body);color:var(--muted-dark);background:transparent;border:1.5px solid var(--line-dark);border-radius:999px;padding:8px 16px;cursor:pointer;transition:.2s}
+.chip:hover{color:var(--ivory);border-color:var(--ivory)}
+.chip[aria-pressed="true"]{background:var(--honey);color:var(--ink);border-color:var(--honey)}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.case{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.case:hover{border-color:var(--honey);transform:translateY(-3px)}
+.case .img{aspect-ratio:16/9;overflow:hidden;position:relative}
+.case .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.case:hover .img img{transform:scale(1.04)}
+.tag{position:absolute;left:14px;top:14px;background:var(--ink);color:var(--honey);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
+.case .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:4px;flex:1}
+.case h3{font-size:26px}
+.case .proj{font-size:15px;color:var(--muted-dark);min-height:24px}
+.case .res{display:flex;align-items:baseline;gap:18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line-dark)}
+.case .res b{font-family:var(--f-display);font-size:30px;font-weight:800;color:var(--honey);line-height:1}
+.case .res span{font-size:14px;color:var(--muted-dark)}
+.case .res .arrow{margin-left:auto;font-size:20px;color:var(--ivory)}
+.case[hidden]{display:none}
+
+/* design */
+.tiles{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:24px}
+.tile .img{height:330px;border-radius:10px;overflow:hidden;background:var(--ink)}
+.tile .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tile:hover .img img{transform:scale(1.04)}
+.tile .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;gap:12px}
+.tile h3{font-size:24px}
+.tile .disc{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember);white-space:nowrap}
+.tile p{font-size:15px;color:var(--muted-light);margin-top:8px;max-width:44ch}
+
+/* why + process */
+.why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+.why-grid h2{font-size:clamp(36px,4.2vw,60px)}
+.quote{margin-top:36px;background:var(--ink);color:var(--ivory);padding:28px 30px;border-radius:10px;position:relative}
+.quote q{display:block;font-family:var(--f-display);font-size:22px;font-weight:600;line-height:1.3;quotes:none}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-size:14px;color:var(--muted-dark)}
+.quote .ph{position:absolute;right:16px;top:-11px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--honey);padding:4px 9px;border-radius:999px}
+.claims{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--ink)}
+.claims article{padding:22px 24px 24px 0;border-bottom:1px solid rgba(15,14,13,.3)}
+.claims article:nth-child(odd){border-right:1px solid rgba(15,14,13,.3);margin-right:24px}
+.claims h3{font-size:22px;margin-bottom:8px}
+.claims p{font-size:15.5px;color:#2a2620}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;counter-reset:s}
+.step{position:relative;padding-top:26px;border-top:2px dashed rgba(15,14,13,.45)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-15px;left:0;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--honey);font:800 14px var(--f-display);display:grid;place-items:center}
+.step b{font-family:var(--f-display);font-size:20px;display:block;margin-bottom:6px}
+.step span{font-size:15px;color:#2a2620;display:block;max-width:24ch}
+.steps-title{margin-top:64px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.contact h2{font-size:clamp(40px,5vw,72px);margin:14px 0 22px}
+.contact h2 em{font-style:normal;font-weight:400;color:var(--honey)}
+.contact .lead{color:var(--muted-dark);max-width:42ch;margin-bottom:28px}
+.promise{list-style:none;display:grid;gap:12px;font-size:16px}
+.promise li{display:flex;gap:12px;align-items:center}
+.promise li::before{content:"✓";display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--honey);color:var(--ink);font-weight:800;font-size:13px;flex:none}
+form{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:12px;padding:32px;display:grid;gap:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{font-size:14px;font-weight:700;display:grid;gap:8px}
+input,textarea{font:500 16px var(--f-body);color:var(--ivory);background:var(--ink);border:1.5px solid var(--line-dark);border-radius:8px;padding:13px 14px;width:100%}
+input:focus,textarea:focus{outline:none;border-color:var(--honey)}
+textarea{min-height:96px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts span{font-size:14px;font-weight:600;border:1.5px solid var(--line-dark);border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--muted-dark)}
+.opts span.on{background:var(--honey);color:var(--ink);border-color:var(--honey)}
+form .btn{justify-self:start;padding:15px 30px}
+.fine{font-size:13px;color:var(--muted-dark)}
+
+footer{background:#080807;border-top:1px solid var(--line-dark);padding:40px 0 28px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:32px}
+.foot nav{display:flex;gap:28px;font-size:15px;color:var(--muted-dark)}
+.foot nav a:hover{color:var(--ivory)}
+.copy{margin-top:28px;padding-top:20px;border-top:1px solid var(--line-dark);font-size:13px;color:var(--muted-dark);display:flex;justify-content:space-between}
+
+/* annotation layer (mockup only) */
+.note{display:none!important;position:absolute;z-index:40;background:#2563eb;color:#fff;font:700 12px/1.35 var(--f-body);padding:8px 11px;border-radius:8px;max-width:230px;box-shadow:0 6px 18px rgba(0,0,0,.35);letter-spacing:0;text-transform:none}
+.note::before{content:attr(data-n);display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#fff;color:#2563eb;margin-right:7px;font-size:11px}
+body.notes .note{display:block!important}
+.rel{position:relative}
+.toggle{position:fixed;right:20px;bottom:20px;z-index:60;background:#2563eb;color:#fff;border:0;border-radius:999px;padding:12px 20px;font:700 14px var(--f-body);cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.fold{display:none;position:absolute;left:0;right:0;top:100svh;border-top:2px dashed #2563eb;z-index:45;pointer-events:none}
+.fold::after{content:"Fold line · 1440 × 900";position:absolute;right:16px;top:-26px;background:#2563eb;color:#fff;font:700 12px var(--f-body);padding:4px 10px;border-radius:6px}
+body.notes .fold{display:block}
+</style>
+</head>
+<body>
+<div class="fold" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top"><img class="logo" src="assets/logo-ivory.png" alt="The Viral Bee" /></a>
+    <nav class="nav" aria-label="Primary">
+      <div class="has-sub">
+        <a href="#services" aria-haspopup="true">Services <i class="caret" aria-hidden="true"></i></a>
+        <ul class="submenu">
+          <li><a href="#" onclick="return false">Affiliate</a></li>
+          <li><a href="#" onclick="return false">Design</a></li>
+          <li><a href="#" onclick="return false">Production</a></li>
+        </ul>
+      </div>
+      <a href="#work">Work</a>
+      <a href="#design">Design</a>
+      <a href="#why">Why us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#contact">Start a project →</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- 1. HERO — one viewport: headline, plain-language line, CTAs, proof, logos -->
+<section class="hero">
+  <div class="wrap hero-main" style="width:100%">
+    <div class="hero-copy rel">
+      <div class="eyebrow">Influencer marketing &amp; social content agency</div>
+      <h1>Smart Content.<span>Viral Impact.</span></h1>
+      <p class="hero-sub"><strong>We connect brands with the right creators and communities</strong> — then make the content that gets people talking.</p>
+      <div class="cta-row rel">
+        <span class="note" data-n="1" style="left:350px;top:-4px">Hero fits one screen: CTAs, proof and logos all above the fold (before, the CTA sat at y=959)</span>
+        <a class="btn btn-primary" href="#contact">Start a project →</a>
+        <a class="btn btn-ghost" href="#work">See our work ↓</a>
+      </div>
+      <div class="proof rel">
+        <span class="note" data-n="2" style="left:0;top:-48px">Proof moved up from the buried case pages. All numbers are from your existing case studies</span>
+        <div><b>6</b><span>industries: tech to real estate</span></div>
+        <div><b>40M+</b><span>views on one always-on campaign</span></div>
+        <div><b>2,000+</b><span>creator videos produced</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="arch"><img src="assets/hero-honeycomb.webp" alt="Honeycomb key visual in amber glass" /></div>
+      <div class="float a"><img src="assets/kate-main.webp" alt="" /><small>Kate Tokyo · 3M+ views</small></div>
+      <div class="float b"><img src="assets/vinasoy-main.webp" alt="" /><small>Vinasoy · 5M+ views</small></div>
+    </div>
+  </div>
+  <div class="brands rel">
+    <span class="note" data-n="3" style="left:var(--gutter);top:-44px">Logos are a static, readable row (was a scrolling marquee that cut names off)</span>
+    <div class="wrap">
+      <p>Worked with</p>
+      <ul><li>Samsung</li><li>Vinasoy</li><li>Vespa</li><li>KATE TOKYO</li><li>Highlands Coffee</li><li>Masterise Homes</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 2. SERVICES -->
+<section class="sec light" id="services">
+  <div class="wrap rel">
+    <span class="note" data-n="4" style="right:var(--gutter);top:-70px">About + Services merged. Four columns replace four tall rows (≈1,100px → ≈560px)</span>
+    <div class="sec-head">
+      <div><div class="eyebrow">What we do</div><h2>Four disciplines. <em>One connected plan.</em></h2></div>
+      <p>We connect strategy, creators, content and social amplification so brands reach the right audience — and leave a mark.</p>
+    </div>
+    <div class="svc">
+      <article><span class="no">01</span><h3>Influencer Marketing</h3><ul><li>Influencer strategy &amp; booking</li><li>Talent management and TikTok channel development</li><li>Social seeding: buzz and engagement</li></ul></article>
+      <article><span class="no">02</span><h3>Social Production</h3><ul><li>Photography</li><li>Video production</li><li>TikTok video editing</li></ul></article>
+      <article><span class="no">03</span><h3>Graphic Design</h3><ul><li>Brand identity and brand assets</li><li>Logos, key visuals and lockups</li><li>Social posts and packaging</li></ul></article>
+      <article><span class="no">04</span><h3>Digital Commerce</h3><ul><li>Livestream management</li><li>KOL/KOC livestream booking</li><li>Performance optimization</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WORK -->
+<section class="sec dark" id="work">
+  <div class="wrap rel">
+    <span class="note" data-n="5" style="right:var(--gutter);top:-70px">Even 3×2 grid, no empty gaps. Filters by industry. A result number on every card (was 3,771px tall, now ≈1,300px)</span>
+    <div class="sec-head wide">
+      <div><div class="eyebrow">Selected work</div><h2>Campaigns that got <em>people talking.</em></h2></div>
+      <div class="filters" role="group" aria-label="Filter by industry">
+        <button class="chip" aria-pressed="true" data-f="all">All</button>
+        <button class="chip" aria-pressed="false" data-f="Tech">Tech</button>
+        <button class="chip" aria-pressed="false" data-f="FMCG">FMCG</button>
+        <button class="chip" aria-pressed="false" data-f="Beauty">Beauty</button>
+        <button class="chip" aria-pressed="false" data-f="F&amp;B">F&amp;B</button>
+        <button class="chip" aria-pressed="false" data-f="Mobility">Mobility</button>
+        <button class="chip" aria-pressed="false" data-f="Real estate">Real estate</button>
+      </div>
+    </div>
+    <div class="cases" id="cases">
+      <a class="case" href="#" data-t="Tech"><div class="img"><img src="assets/samsung-main.webp" alt="Galaxy Campus Friend creators" /><span class="tag">Tech</span></div><div class="body"><h3>Samsung</h3><div class="proj">Galaxy Campus Friend Season 2</div><div class="res"><b>40M+</b><span>views · 50 student KOLs</span><i class="arrow">→</i></div></div></a>
+      <a class="case" href="#" data-t="FMCG"><div class="img"><img src="assets/vinasoy-main.webp" alt="LUNAS podcast cast" /><span class="tag">FMCG</span></div><div class="body"><h3>Vinasoy</h3><div class="proj">Khỏe đẹp trăm phần – Cân bằng cuộc sống</div><div class="res"><b>5M+</b><span>views · 35K+ engagements</span><i class="arrow">→</i></div></div></a>
+      <a class="case" href="#" data-t="Mobility"><div class="img"><img src="assets/vespa-main.webp" alt="Vespa Sprint S content" /><span class="tag">Mobility</span></div><div class="body"><h3>Vespa</h3><div class="proj">Sprint S Soft Launch</div><div class="res"><b>110K+</b><span>views · 20 PR articles</span><i class="arrow">→</i></div></div></a>
+      <a class="case" href="#" data-t="Beauty"><div class="img"><img src="assets/kate-main.webp" alt="Kate Tokyo launch" /><span class="tag">Beauty</span></div><div class="body"><h3>KATE TOKYO</h3><div class="proj">Vietnam Product Launch</div><div class="res"><b>3M+</b><span>views · 65 KOLs/KOCs</span><i class="arrow">→</i></div></div></a>
+      <a class="case" href="#" data-t="F&amp;B"><div class="img"><img src="assets/highlands-main.webp" alt="Highlands Coffee festive key visual" /><span class="tag">F&amp;B</span></div><div class="body"><h3>Highlands Coffee</h3><div class="proj">Festive Campaign</div><div class="res"><b>1.2M</b><span>views · 120K engagements</span><i class="arrow">→</i></div></div></a>
+      <a class="case" href="#" data-t="Real estate"><div class="img"><img src="assets/masterise-main.webp" alt="Masterise Homes key visual" /><span class="tag">Real estate</span></div><div class="body"><h3>Masterise Homes</h3><div class="proj">Nâng tầm phong cách sống</div><div class="res"><b>3M+</b><span>views · 100K+ engagements</span><i class="arrow">→</i></div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. DESIGN -->
+<section class="sec light" id="design">
+  <div class="wrap rel">
+    <span class="note" data-n="6" style="right:var(--gutter);top:-70px">Three design projects in one row (was ≈3,500px of stacked galleries). Each opens a lightbox</span>
+    <div class="sec-head">
+      <div><div class="eyebrow">Creative showcase</div><h2>Design that <em>holds its own.</em></h2></div>
+      <p>Brand identity, rebranding and packaging from the same team that builds the campaigns.</p>
+    </div>
+    <div class="tiles">
+      <article class="tile"><div class="img"><img src="assets/ghiv-billboard.webp" alt="Ghív Studio billboard" /></div><div class="meta"><h3>Ghív Studio</h3><span class="disc">Brand identity</span></div><p>A boutique photo studio that runs on constant motion. The horse became the mark: bold, fearless, always galloping forward.</p></article>
+      <article class="tile"><div class="img"><img src="assets/bond-photos.webp" alt="Burger Bond rebrand" /></div><div class="meta"><h3>Burger Bond</h3><span class="disc">Rebranding</span></div><p>A Saigon burger spot built for bonding with the homies. Sticky type and a flame accent.</p></article>
+      <article class="tile"><div class="img"><img src="assets/kientrung-box.webp" alt="Kiến Trung Tết gift box" /></div><div class="meta"><h3>Kiến Trung</h3><span class="disc">Packaging</span></div><p>An embossed Tết gift box inspired by the mosaic art of Kiến Trung Palace in Huế.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHY + PROCESS -->
+<section class="sec honey" id="why">
+  <div class="wrap rel">
+    <span class="note" data-n="7" style="right:var(--gutter);top:-70px;background:#1e3a8a">New: process steps + a client quote slot. Answers “what is it like to work with you?”. The quote is a placeholder</span>
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow" style="color:#3f3a33">Why the Viral Bee</div>
+        <h2 style="margin-top:14px">Built like a hive. Moves like a swarm.</h2>
+        <div class="quote rel"><span class="ph">Placeholder</span><q>“Client quote goes here: one sentence about the result and how easy the team was to work with.”</q><cite>Name, role — Brand</cite></div>
+      </div>
+      <div class="claims">
+        <article><h3>Cost Effective</h3><p>Practical solutions shaped around your budget and goals — more impact without compromising creative quality.</p></article>
+        <article><h3>Strong Connection</h3><p>An established network of creators, talents, communities and production partners, matched to each campaign.</p></article>
+        <article><h3>Strategic-Led</h3><p>Beyond booking: influencers, seeding, communities and amplification connected in one insight-led plan.</p></article>
+        <article><h3>Fast &amp; Agile</h3><p>A hands-on production and account team that responds quickly and stays close from planning to delivery.</p></article>
+      </div>
+    </div>
+    <div class="eyebrow steps-title" style="color:#3f3a33">How a campaign runs</div>
+    <div class="steps" style="margin-top:34px">
+      <div class="step"><b>Strategy</b><span>Insight on your audience, brief and budget.</span></div>
+      <div class="step"><b>Creators</b><span>The right voices and communities, matched to the brief.</span></div>
+      <div class="step"><b>Content</b><span>Formats made and quality-checked by our team.</span></div>
+      <div class="step"><b>Amplification</b><span>Seeding and community pages to carry it further.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CONTACT -->
+<section class="sec dark contact" id="contact">
+  <div class="wrap contact-grid rel">
+    <span class="note" data-n="8" style="right:var(--gutter);top:-70px">Short form, clear next step. The “Demo form” notice is removed. Wire it up before launch</span>
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Let’s make your next move <em>matter.</em></h2>
+      <p class="lead">Share your goals, audience and timing. We’ll come back with how we’d approach it — creators, content and channels included.</p>
+      <ul class="promise"><li>Reply within 1 business day</li><li>Free first call, no commitment</li><li>Plan matched to your budget</li></ul>
+    </div>
+    <form onsubmit="return false">
+      <div class="row"><label>Full name<input placeholder="Your name" /></label><label>Work email<input type="email" placeholder="you@company.com" /></label></div>
+      <label>Company<input placeholder="Company name" /></label>
+      <div><div style="font-size:14px;font-weight:700;margin-bottom:8px">I’m interested in</div>
+        <div class="opts" id="opts"><span class="on">Influencer Marketing</span><span>Social Production</span><span>Graphic Design</span><span>Digital Commerce</span><span>Not sure yet</span></div></div>
+      <label>Project brief<textarea placeholder="Objective, audience, timing, budget range…"></textarea></label>
+      <button class="btn btn-primary" type="submit">Send your brief →</button>
+      <p class="fine">We only use your details to reply to this brief.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><img class="logo" src="assets/logo-ivory.png" alt="The Viral Bee" style="height:44px;margin-bottom:12px" /><p style="color:var(--muted-dark);font-size:15px">Influencing the right people, in the right places, every single time.</p></div>
+      <nav aria-label="Footer"><a href="#services">Services</a><a href="#work">Work</a><a href="#design">Design</a><a href="#why">Why us</a><a href="#contact">Contact</a></nav>
+      <a class="btn btn-ghost btn-sm" href="#">View credentials ↗</a>
+    </div>
+    <div class="copy"><span>© 2026 The Viral Bee®</span><a href="#top">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<button class="toggle" id="tg" aria-pressed="false">Show design notes</button>
+
+<script>
+// annotation toggle
+const tg=document.getElementById('tg');
+tg.onclick=()=>{const on=document.body.classList.toggle('notes');tg.textContent=on?'Hide design notes':'Show design notes';tg.setAttribute('aria-pressed',on)};
+// work filters
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
+  const f=c.dataset.f;
+  document.querySelectorAll('.case').forEach(k=>k.hidden=!(f==='all'||k.dataset.t===f));
+});
+// service chips
+document.querySelectorAll('#opts span').forEach(s=>s.onclick=()=>s.classList.toggle('on'));
+// active nav link
+const links=[...document.querySelectorAll('.nav a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
