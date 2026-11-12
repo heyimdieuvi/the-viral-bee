@@ -269,7 +269,7 @@ window.SITE = {
    "alt": "The Viral Bee honeycomb key visual in amber glass"
   },
   "samsungMain": {
-   "src": "assets/samsung-main.webp",
+   "src": "assets/samsung.jpg",
    "w": 1400,
    "h": 598,
    "alt": "Galaxy Campus Friend student creators at a check-in event and on livestream"
@@ -293,7 +293,7 @@ window.SITE = {
    "alt": "Vinasoy social minigame, AR and AI photo content"
   },
   "vespaMain": {
-   "src": "assets/vespa-main.webp",
+   "src": "assets/vespa.jpg",
    "w": 821,
    "h": 641,
    "alt": "Vespa Sprint S content shared by social communities"
