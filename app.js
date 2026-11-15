@@ -97,6 +97,16 @@
     }).join('');
   }
 
+  /* ---------- affiliate: stat cards ---------- */
+  var affEl = $('#aff-grid');
+  if (affEl && DATA.affiliate) {
+    affEl.innerHTML = DATA.affiliate.stats.map(function (s) {
+      return '<div class="aff-card' + (s.wide ? ' wide' : '') + '">' +
+        '<dt><b>' + esc(s.label) + '</b><span>' + esc(s.note) + '</span></dt>' +
+        '<dd><span class="aff-num">' + esc(s.value) + '</span></dd></div>';
+    }).join('');
+  }
+
   /* ---------- network: KOL cards ---------- */
   var kolsEl = $('#kols');
 
@@ -233,18 +243,18 @@
         navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
         /* Design now lives under Services, so Services stays highlighted while viewing either section */
         var parent = $('.has-sub > a');
-        if (parent) parent.classList.toggle('active', en.target.id === 'services' || en.target.id === 'design');
+        if (parent) parent.classList.toggle('active', ['services', 'design', 'affiliate'].indexOf(en.target.id) > -1);
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     $$('main section[id]').forEach(function (s) { io.observe(s); });
   }
 
-  /* ---------- hero proof numbers: count up once when they scroll into view ---------- */
-  var proof = $('.proof');
+  /* ---------- count-up numbers (hero proof strip + affiliate stats): run once when scrolled into view ---------- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (proof && !reduceMotion) {
-    var counters = $$('dd', proof).map(function (dd) {
+  function countUp(container, threshold) {
+    if (!container || reduceMotion) return;
+    var counters = $$('dd', container).map(function (dd) {
       var final = dd.textContent.trim();
       var m = /^([\d,]+)(.*)$/.exec(final);
       if (!m) return null;
@@ -281,12 +291,15 @@
     if ('IntersectionObserver' in window) {
       var cio = new IntersectionObserver(function (entries) {
         if (entries[0].isIntersecting) { cio.disconnect(); setTimeout(runCount, 250); }
-      }, { threshold: 0.6 });
-      cio.observe(proof);
+      }, { threshold: threshold });
+      cio.observe(container);
     } else {
       counters.forEach(function (c) { c.live.textContent = fmt(c, c.to); });
     }
   }
+
+  countUp($('.proof'), 0.6);
+  countUp($('#aff-grid'), 0.25);
 
   /* ---------- footer ---------- */
   var cred = $('#cred-link');

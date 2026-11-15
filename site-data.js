@@ -391,6 +391,21 @@ window.SITE = {
  },
  "credentialsUrl": "https://www.canva.com/design/DAHPUl6qKVs/J_7yNi0LjyDYQqIC6skdeQ/edit",
 
+ /* Affiliate section stat cards. Order here = order on the page; "wide": true makes a double-width card.
+    !! PLACEHOLDER FIGURES: these values were copied from the layout reference image (another
+    company's numbers). Replace every value/label/note with The Viral Bee's real figures before publishing. */
+ "affiliate": {
+  "stats": [
+   { "value": "250+",    "label": "Livestreams / month",  "note": "High-converting livestream sessions" },
+   { "value": "29,977+", "label": "Videos / month",       "note": "Short-form video content produced" },
+   { "value": "50M+",    "label": "Followers",            "note": "Total reach across the network", "wide": true },
+   { "value": "500+",    "label": "KOLs & creators",      "note": "Exclusive partner network" },
+   { "value": "100+",    "label": "Affiliate channels",   "note": "High-traffic distribution network" },
+   { "value": "14",      "label": "Studios",              "note": "Fully equipped for production" },
+   { "value": "2",       "label": "Office buildings",     "note": "Headquartered in Ho Chi Minh City" }
+  ]
+ },
+
  /* KOL network (Network section). Order here = order on the page.
     photo: set to an image path to replace the initials placeholder, e.g. "assets/kols/gonpink.webp" */
  "kols": [
